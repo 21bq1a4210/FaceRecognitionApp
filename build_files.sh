@@ -1,7 +1,4 @@
-#!/bin/bash
+# build_files.sh
 
-# Install dependencies using the full path to pip
-/path/to/python/bin/pip install -r requirements.txt
-
-# Collect static files with manage.py
-python3.9 FaceRecognitionApp/manage.py collectstatic --noinput
+pip install -r requirements.txt
+python3.9 manage.py collectstatic --noinput
