@@ -1,14 +1,28 @@
-
 {
-    "builds": [{
-        "src": "FaceRecognitionApp/asgi.py",
-        "use": "@vercel/python",
-        "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
-    }],
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "FaceRecognitionApp/asgi.py"
-        }
-    ]
+  "version": 2,
+  "builds": [
+    {
+      "src": "FaceRecognitionApp/wsgi.py",
+      "use": "@vercel/python",
+      "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+    },
+    {
+      "src": "build_files.sh",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "ui/staticfiles"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "FaceRecognitionApp/wsgi.py"
+    }
+  ],
+  "outputDirectory": "ui/staticfiles"
 }
